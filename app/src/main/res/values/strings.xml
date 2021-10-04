@@ -5,4 +5,5 @@
     <string name="german">German</string>
     <string name="spanish">Spanish</string>
     <string name="start_speaking">Start speaking</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 </resources>
