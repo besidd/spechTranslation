@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import android.util.Log
 import android.view.MotionEvent
-import android.view.View.OnTouchListener
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -77,22 +75,14 @@ class MainActivity : AppCompatActivity() {
 
         englishGermanTranslator.downloadModelIfNeeded()
             .addOnSuccessListener {
-                // Model downloaded successfully. Okay to start translating.
-                // (Set a flag, unhide the translation UI, etc.)
             }
             .addOnFailureListener { _ ->
-                // Model couldn’t be downloaded or other internal error.
-                // ...
             }
 
         englishSpanishTranslator.downloadModelIfNeeded()
             .addOnSuccessListener {
-                // Model downloaded successfully. Okay to start translating.
-                // (Set a flag, unhide the translation UI, etc.)
             }
             .addOnFailureListener { _ ->
-                // Model couldn’t be downloaded or other internal error.
-                // ...
             }
 
 
@@ -139,7 +129,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        micButton.setOnTouchListener(OnTouchListener { _, motionEvent ->
+
+        micButton.setOnTouchListener { _, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_UP) {
                 speechRecognizer.stopListening()
             }
@@ -149,7 +140,7 @@ class MainActivity : AppCompatActivity() {
                 speechRecognizer.startListening(speechRecognizerIntent)
             }
             false
-        })
+        }
 
 
     }
@@ -194,22 +185,18 @@ class MainActivity : AppCompatActivity() {
         englishGermanTranslator.translate(input)
             .addOnSuccessListener { translatedText ->
                 // Translation successful.
-                Log.d("fvfwvwfgerman", translatedText)
                 germanText.text = translatedText
             }
-            .addOnFailureListener { exception ->
-                Log.d("fvfwvwf", exception.message.toString())
+            .addOnFailureListener { _ ->
                 // Error.
                 // ...
             }
         englishSpanishTranslator.translate(input)
             .addOnSuccessListener { translatedText ->
                 // Translation successful.
-                Log.d("fvfwvwfspanish", translatedText)
                 spanishText.text = translatedText
             }
-            .addOnFailureListener { exception ->
-                Log.d("fvfwvwf", exception.message.toString())
+            .addOnFailureListener { _ ->
                 // Error.
                 // ...
             }
